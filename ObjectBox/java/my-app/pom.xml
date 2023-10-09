@@ -1,0 +1,104 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.mycompany.app</groupId>
+  <artifactId>my-app</artifactId>
+  <packaging>jar</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>my-app</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+
+    <objectboxVersion>3.5.0</objectboxVersion>
+  </properties>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    <!-- ObjectBoxの依存関係を追加 -->
+    <dependency>
+      <groupId>io.objectbox</groupId>
+      <artifactId>objectbox-java</artifactId>
+      <version>${objectboxVersion}</version> <!-- バージョンは適宜変更してください -->
+    </dependency>
+    <!-- Native libraries, you can remove the ones for systems you do not support -->
+    <dependency>
+      <groupId>io.objectbox</groupId>
+      <artifactId>objectbox-linux</artifactId>
+      <version>${objectboxVersion}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.objectbox</groupId>
+      <artifactId>objectbox-macos</artifactId>
+      <version>${objectboxVersion}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.objectbox</groupId>
+      <artifactId>objectbox-windows</artifactId>
+      <version>${objectboxVersion}</version>
+    </dependency>
+  </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.0</version>  <!-- 使用するプラグインのバージョンを指定します -->
+        <configuration>
+          <source>1.8</source>  <!-- ソースコードのJavaバージョンを指定します -->
+          <target>1.8</target>  <!-- ターゲットのJavaバージョンを指定します -->
+
+          <annotationProcessorPaths>
+            <path>
+              <groupId>io.objectbox</groupId>
+              <artifactId>objectbox-processor</artifactId>
+              <version>${objectboxVersion}</version>
+            </path>
+          </annotationProcessorPaths>
+          <annotationProcessors>
+            <annotationProcessor>io.objectbox.processor.ObjectBoxProcessorShim</annotationProcessor>
+          </annotationProcessors>
+          <compilerArgs>
+            <arg>-Aobjectbox.modelPath=${project.basedir}/objectbox-models/default.json</arg>
+          </compilerArgs>
+        </configuration>
+      </plugin>
+
+      <!-- exec-maven-pluginの設定を追加 -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>3.1.0</version>
+        <configuration>
+          <mainClass>com.mycompany.app.App</mainClass>  <!-- あなたのメインクラスを指定します -->
+        </configuration>
+      </plugin>
+
+      <!-- Runs the ObjectBox byte-code transformer after Maven finishes compiling -->
+      <plugin>
+        <groupId>io.objectbox</groupId>
+        <artifactId>objectbox-maven-plugin</artifactId>
+        <version>1.3.0</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>transform</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <debug>true</debug>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
