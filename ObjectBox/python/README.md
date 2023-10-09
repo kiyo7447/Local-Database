@@ -32,6 +32,7 @@ deactivate
 ### モデルの作成
 モデルは、@Entityデコレータで注釈が付けられた Python クラスで構成されます。
 ```
+wsl
 python3 program.py 
 ```
 ### 結果
