@@ -16,4 +16,3 @@ class Person:
     byte_array = Property(bytes, id=10, uid=1010)
     # Regular properties are not stored.
     transient = ""
-

@@ -2,11 +2,11 @@ package com.mycompany.app;
 
 import io.objectbox.Box;
 import io.objectbox.BoxStore;
-import io.objectbox.annotation.Entity;
-import io.objectbox.annotation.Id;
+// import io.objectbox.annotation.Entity;
+// import io.objectbox.annotation.Id;
 
 
-import com.mycompany.app.Person;  // 生成された MyObjectBox クラスへのパス
+// import com.mycompany.app.Person;  // 生成された MyObjectBox クラスへのパス
 // import com.mycompany.app.MyObjectBox;  // 生成された MyObjectBox クラスへのパス
 
 public class App {

@@ -1,0 +1,6 @@
+pip
+wheel
+flatbuffers==23.5.26
+pytest>=4.4.1
+twine
+numpy
