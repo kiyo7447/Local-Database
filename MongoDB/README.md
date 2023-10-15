@@ -55,7 +55,11 @@ MongoDB の内容を視覚的に確認し、管理するための多くのツー
    - [Adminerの公式サイト](https://www.adminer.org/)からダウンロードできます。
 
 # Pythonでの使い方
+https://github.com/kiyo7447/Python-Logic/blob/main/Section12_Database/145MongoDB_master.py
 
+https://github.com/kiyo7447/Python-Logic/blob/main/Section12_Database/145MongoDB_transaction.py
+
+# MongoDB Shellの使い方
 
 ## 基本的な操作方法
 
