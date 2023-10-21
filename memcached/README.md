@@ -22,7 +22,7 @@ sudo systemctl disable memcached
 ```bash
 docker build -t memcached-image .
 
-docker run --rm -d -p 11211:11211 --name memcached memcached-image
+docker run -d -p 11211:11211 --name memcached memcached-image
 
 ```
 # # Docker Composeでの使い方
